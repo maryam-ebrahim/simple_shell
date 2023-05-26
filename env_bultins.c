@@ -1,13 +1,9 @@
-/*
- * File: env_builtins.c
- * Auth: Asmaa BAHR and Maryam Ebrahim
- */
-
 #include "shell.h"
 
 int shellby_env(char **argument, char __attribute__((__unused__)) **front_);
 int shellby_setenv(char **argument, char __attribute__((__unused__)) **front_);
-int shellby_unsetenv(char **argument, char __attribute__((__unused__)) **front_);
+int shellby_unsetenv(char **argument,
+		char __attribute__((__unused__)) **front_);
 
 /**
  * shellby_env - a function that prints the current env environemnt.
@@ -104,7 +100,8 @@ int shellby_setenv(char **argument, char __attribute__((__unused__)) **front_)
  *         0 (when otherwise)
  */
 
-int shellby_unsetenv(char **argument,char __attribute__((__unused__)) **front_)
+int shellby_unsetenv(char **argument,
+		char __attribute__((__unused__)) **front_)
 {
 	char **env_var, **new_environ;
 	size_t size;

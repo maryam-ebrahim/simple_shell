@@ -2,7 +2,7 @@
 
 int num_len(int measu_nu);
 char *_itoa(int measu_nu);
-int create_error(char **argument, int err_or);
+int create_error(char **argu, int err_or);
 
 /**
  * num_len - a function that counts digit length of a num
@@ -76,36 +76,40 @@ char *_itoa(int measu_nu)
 
 /**
  * create_error - a function that wr custom err message to stderr.
- * @argument: array of argss
+ * @argu: array of argss
  * @err_or: err value
  *
  * Return: err value
  */
-int create_error(char **argument, int err_or)
+int create_error(char **argu, int err_or)
 {
 	char *error;
 
 	switch (err_or)
 	{
 	case -1:
-		error = error_env(argument);
+		error = error_env(argu);
 		break;
 	case 1:
-		error = error_1(argument);
+		error = error_1(argu);
 		break;
 	case 2:
-		if (*(argument[0]) == 'e')
-			error = error_2_exit(++argument);
-		else if (argument[0][0] == ';' || argument[0][0] == '&' || argument[0][0] == '|')
-			error = error_2_syntax(argument);
+		if (*(argu[0]) == 'e')
+			error = error_2_exit(++argu);
+		else if (argu[0][0] == ';'
+			|| argu[0][0] == '&'
+			|| argu[0][0] == '|')
+		{
+			error = error_2_syntax(argu);
+		}
 		else
-			error = error_2_cd(argument);
+			error = error_2_cd(argu);
 		break;
 	case 126:
-		error = error_126(argument);
+		error = error_126(argu);
 		break;
 	case 127:
-		error = error_127(argument);
+		error = error_127(argu);
 		break;
 	}
 	write(STDERR_FILENO, error, _strlen(error));
