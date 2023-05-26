@@ -1,7 +1,7 @@
 /*
  * File: locate.c
- * 
- *          
+ *
+ *
  */
 
 #include "shell.h"

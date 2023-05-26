@@ -1,7 +1,7 @@
 /*
  * File: helpers_2.c
- * 
- *         
+ *
+ *
  */
 
 #include "shell.h"
