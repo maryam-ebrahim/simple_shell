@@ -2,7 +2,11 @@
  * File: alias_builtins.c
  * Auth: Asmaa BAHR and Maryam Ebrahim
 */
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> bc5ffc7837b89442bf3033f477dd9ac934c73f79
 #include "shell.h"
 
 int shellby_alias(char **argument, char __attribute__((__unused__)) **front_);

@@ -1,5 +1,10 @@
 /*
  * File: locate.c
+<<<<<<< HEAD
+=======
+ *
+ *
+>>>>>>> bc5ffc7837b89442bf3033f477dd9ac934c73f79
  */
 
 #include "shell.h"

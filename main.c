@@ -142,6 +142,7 @@ int main(int arg_c, char *arg_v[])
 	free_alias_list(alias22);
 	return (*exeRet_);
 }
+<<<<<<< HEAD
 
 /*
  * File: proc_file_comm.c
@@ -276,3 +277,5 @@ int proc_file_comands(char *filePath_, int *exeRet_)
 	free(front_);
 	return (retur);
 }
+=======
+>>>>>>> bc5ffc7837b89442bf3033f477dd9ac934c73f79
