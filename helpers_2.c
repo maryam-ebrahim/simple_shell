@@ -1,7 +1,6 @@
 /*
  * File: helpers_2.c
- * 
- *         
+ *
  */
 
 #include "shell.h"
@@ -165,8 +164,8 @@ ssize_t get_new_len(char *_line)
 	return (new_len);
 }
 /**
- * logical_ops - a function that checks a _line for logical operators "||" or "&&".
- * @_line: pntr to the character to check in the _line.
+ * logical_ops - a function checks a line for logical operators "||" or "&&"
+ * @_line: pntr to the character to check in the _line
  * @new_len: pointer to new_len in get_new_len function.
  */
 

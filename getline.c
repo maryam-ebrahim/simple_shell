@@ -7,7 +7,7 @@
 #include "shell.h"
 
 void *_realloc(void *potr, unsigned int oldSize0, unsigned int newSize1);
-void assign_lineptr(char **linepotr_, size_t *n_si, char *buf_fer, size_t measu_nu);
+void assign_lineptr(char **linepotr_, size_t *n_si, char *buf_fer, size_t numm);
 ssize_t _getline(char **linepotr_, size_t *n_si, FILE *stream);
 
 /**
@@ -72,20 +72,20 @@ void *_realloc(void *potr, unsigned int oldSize0, unsigned int newSize1)
  * @measu_nu: size of buf_ferrrr
  */
 
-void assign_lineptr(char **linepotr_, size_t *n_si, char *buf_fer, size_t measu_nu)
+void assign_lineptr(char **linepotr_, size_t *n_si, char *buf_fer, size_t numm)
 {
 	if (*linepotr_ == NULL)
 	{
-		if (measu_nu > 120)
-			*n_si = measu_nu;
+		if (numm > 120)
+			*n_si = numm;
 		else
 			*n_si = 120;
 		*linepotr_ = buf_fer;
 	}
-	else if (*n_si < measu_nu)
+	else if (*n_si < numm)
 	{
-		if (measu_nu > 120)
-			*n_si = measu_nu;
+		if (numm > 120)
+			*n_si = numm;
 		else
 			*n_si = 120;
 		*linepotr_ = buf_fer;

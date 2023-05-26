@@ -1,7 +1,6 @@
 /*
  * File: split.c
- * 
- *          
+ *
  */
 
 #include "shell.h"

@@ -1,7 +1,6 @@
 /*
  * File: input_helpers.c
  *
- *
  */
 
 #include "shell.h"
@@ -49,7 +48,7 @@ char *get_args(char *_line, int *exeRet_)
 }
 
 /**
- * call_args - a function that partitions 
+ * call_args - a function that partitions
  * operators from cmdss we calls them.
  * @argument: An array of arguments.
  * @front_: dble pontr to the start of an argumentt

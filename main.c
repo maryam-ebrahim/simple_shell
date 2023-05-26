@@ -143,9 +143,6 @@ int main(int arg_c, char *arg_v[])
 	return (*exeRet_);
 }
 
-
-
-///////////proc_file_comm.c
 /*
  * File: proc_file_comm.c
  *

@@ -27,7 +27,7 @@ void free_args(char **argument, char **front_)
 }
 
 /**
- * get_pid - a function that gets the current id prc 
+ * get_pid - a function that gets the current id prc
  * Description: open the stat file, a space-delimited file containing
  *              information about the crnt prc. The P_I_D is the
  *              first word in the file. The function reads the P_I_D into

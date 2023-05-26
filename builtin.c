@@ -2,7 +2,7 @@
  * File: builtin.c
  * Authors: Asmaa BAHR and Maryam Ebrahim
  */
- 
+
 #include "shell.h"
 int (*get_builtin(char *comand))(char **argument, char **front_);
 int shellby_exit(char **argument, char **front_);
@@ -67,7 +67,7 @@ int shellby_exit(char **argument, char **front_)
 		for (; argument[0][i]; i++)
 		{
 			if (i <= LengthOfInt && argument[0][i] >= '0' && argument[0][i] <= '9')
-				measu_nu = (measu_nu * 10) + (argument[0][i] - '0');
+				num = (num * 10) + (argument[0][i] - '0');
 			else
 				return (create_error(--argument, 2));
 		}
@@ -86,7 +86,7 @@ int shellby_exit(char **argument, char **front_)
 }
 
 /**
- * shellby_cd - a function that changes the current directory of the shell_by process.
+ * shellby_cd - a fnction tht changes the current dir of the shell_by process
  * @argument: array of arguments.
  * @front_: double pointer to da beginning of argument.
  *

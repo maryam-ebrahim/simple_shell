@@ -1,7 +1,6 @@
 /*
  * File: str_funcs22.c
- * 
- *          
+ *
  */
 
 #include "shell.h"

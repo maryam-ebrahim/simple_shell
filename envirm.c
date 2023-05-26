@@ -10,7 +10,7 @@ char **_getenv(const char *variab);
  * Return: NULL (when an error occures)
  *         O/w (dble pntr to new cpy)
  */
- 
+
 char **_copyenv(void)
 {
 	char **new_environ;
