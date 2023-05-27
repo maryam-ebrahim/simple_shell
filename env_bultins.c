@@ -1,4 +1,5 @@
 #include "shell.h"
+extern char **envirm;
 
 int shellby_env(char **argu, char __attribute__((__unused__)) **frnt);
 int shellby_setenv(char **argu, char __attribute__((__unused__)) **frnt);
@@ -18,16 +19,16 @@ int shellby_unsetenv(char **argu, char __attribute__((__unused__)) **frnt);
 
 int shellby_env(char **argu, char __attribute__((__unused__)) **frnt)
 {
-	int ind_ex;
-	char n_c = '\n';
+	int indx;
+	char nnc = '\n';
 
 	if (!envirm)
 		return (-1);
 
-	for (ind_ex = 0; envirm[ind_ex]; ind_ex++)
+	for (indx = 0; envirm[indx]; indx++)
 	{
-		write(STDOUT_FILENO, envirm[ind_ex], _strlen(envirm[ind_ex]));
-		write(STDOUT_FILENO, &n_c, 1);
+		write(STDOUT_FILENO, envirm[indx], _strlen(envirm[indx]));
+		write(STDOUT_FILENO, &nnc, 1);
 	}
 
 	(void)argu;
@@ -47,9 +48,9 @@ int shellby_env(char **argu, char __attribute__((__unused__)) **frnt)
 
 int shellby_setenv(char **argu, char __attribute__((__unused__)) **frnt)
 {
-	char **env_var = NULL, **new_environ, *NewValue;
+	char **env_var = NULL, **new_envirm, *NewValue;
 	size_t size;
-	int ind_ex;
+	int indx;
 
 	if (!argu[0] || !argu[1])
 		return (create_error(argu, -1));
@@ -71,20 +72,20 @@ int shellby_setenv(char **argu, char __attribute__((__unused__)) **frnt)
 	for (size = 0; envirm[size]; size++)
 		;
 
-	new_environ = malloc(sizeof(char *) * (size + 2));
-	if (!new_environ)
+	new_envirm = malloc(sizeof(char *) * (size + 2));
+	if (!new_envirm)
 	{
 		free(NewValue);
 		return (create_error(argu, -1));
 	}
 
-	for (ind_ex = 0; envirm[ind_ex]; ind_ex++)
-		new_environ[ind_ex] = envirm[ind_ex];
+	for (indx = 0; envirm[indx]; indx++)
+		new_envirm[indx] = envirm[indx];
 
 	free(envirm);
-	envirm = new_environ;
-	envirm[ind_ex] = NewValue;
-	envirm[ind_ex + 1] = NULL;
+	envirm = new_envirm;
+	envirm[indx] = NewValue;
+	envirm[indx + 1] = NULL;
 
 	return (0);
 }
@@ -101,9 +102,9 @@ int shellby_setenv(char **argu, char __attribute__((__unused__)) **frnt)
 
 int shellby_unsetenv(char **argu, char __attribute__((__unused__)) **frnt)
 {
-	char **env_var, **new_environ;
+	char **env_var, **new_envirm;
 	size_t size;
-	int ind_ex, ind_ex2;
+	int indx, indx2;
 
 	if (!argu[0])
 		return (create_error(argu, -1));
@@ -114,22 +115,22 @@ int shellby_unsetenv(char **argu, char __attribute__((__unused__)) **frnt)
 	for (size = 0; envirm[size]; size++)
 		;
 
-	new_environ = malloc(sizeof(char *) * size);
-	if (!new_environ)
+	new_envirm = malloc(sizeof(char *) * size);
+	if (!new_envirm)
 		return (create_error(argu, -1));
 
-	for (ind_ex = 0, ind_ex2 = 0; envirm[ind_ex]; ind_ex++)
+	for (indx = 0, indx2 = 0; envirm[indx]; indx++)
 	{
-		if (*env_var == envirm[ind_ex])
+		if (*env_var == envirm[indx])
 		{
 			free(*env_var);
 			continue;
 		}
-		new_environ[ind_ex2] = envirm[ind_ex];
-		ind_ex2++;
+		new_envirm[indx2] = envirm[indx];
+		indx2++;
 	}
 	free(envirm);
-	envirm = new_environ;
+	envirm = new_envirm;
 	envirm[size - 1] = NULL;
 
 	return (0);

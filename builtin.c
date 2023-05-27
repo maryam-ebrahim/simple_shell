@@ -54,7 +54,7 @@ int (*get_builtin(char *comand))(char **argu, char **front_)
 int shellby_exit(char **argu, char **front_)
 {
 	int i, LengthOfInt = 10;
-	unsigned int numb = 0, max = 1 << (sizeof(int) * 8 - 1);
+	unsigned int num = 0, max = 1 << (sizeof(int) * 8 - 1);
 
 	if (argu[0])
 	{
@@ -66,7 +66,7 @@ int shellby_exit(char **argu, char **front_)
 		for (; argu[0][i]; i++)
 		{
 			if (i <= LengthOfInt && argu[0][i] >= '0' && argu[0][i] <= '9')
-				mNu = (mNu * 10) + (argu[0][i] - '0');
+				num = (num * 10) + (argu[0][i] - '0');
 			else
 				return (create_error(--argu, 2));
 		}
@@ -75,14 +75,14 @@ int shellby_exit(char **argu, char **front_)
 	{
 		return (-3);
 	}
-	if (mNu > max - 1)
+	if (num > max - 1)
 		return (create_error(--argu, 2));
 
 	argu -= 1;
 	free_args(argu, front_);
 	free_env();
 	free_alias_list(alias22);
-	exit(mNu);
+	exit(num);
 }
 
 /**
@@ -97,7 +97,7 @@ int shellby_exit(char **argu, char **front_)
 
 int shellby_cd(char **argu, char __attribute__((__unused__)) **front_)
 {
-	char **direcInfo_, *newLine_ = "\n";
+	char **direcInfo_, *newLine = "\n";
 	char *old_pwd = NULL, *pwd = NULL;
 	struct stat direc;
 
@@ -200,4 +200,3 @@ int shellby_help(char **argu, char __attribute__((__unused__)) **front_)
 
 	return (0);
 }
-
