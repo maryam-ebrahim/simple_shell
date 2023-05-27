@@ -102,9 +102,9 @@ int _strncmp(const char *s_1, const char *s_2, size_t n_si);
 /* Builtins */
 int (*get_builtin(char *comand))(char **argu, char **front_);
 int shellby_exit(char **argu, char **front_);
-int shellby_env(char **argu, char __attribute__((__unused__)) **front_);
-int shellby_setenv(char **argu, char __attribute__((__unused__)) **front_);
-int shellby_unsetenv(char **argu, char __attribute__((__unused__)) **front_);
+int shellby_env(char **argu, char __attribute__((__unused__)) **frnt);
+int shellby_setenv(char **argu, char __attribute__((__unused__)) **frnt);
+int shellby_unsetenv(char **argu, char __attribute__((__unused__)) **frnt);
 int shellby_cd(char **argu, char __attribute__((__unused__)) **front_);
 int shellby_alias(char **argu, char __attribute__((__unused__)) **front_);
 int shellby_help(char **argu, char __attribute__((__unused__)) **front_);
