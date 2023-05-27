@@ -1,14 +1,13 @@
 #include "shell.h"
-extern char **envirm;
 
-int shellby_env(char **argu, char __attribute__((__unused__)) **frnt);
-int shellby_setenv(char **argu, char __attribute__((__unused__)) **frnt);
-int shellby_unsetenv(char **argu, char __attribute__((__unused__)) **frnt);
+int shellby_env(char **argu, char __attribute__((__unused__)) **front_);
+int shellby_setenv(char **argu, char __attribute__((__unused__)) **front_);
+int shellby_unsetenv(char **argu, char __attribute__((__unused__)) **front_);
 
 /**
  * shellby_env - a function that prints the current env environemnt.
  * @argu: array of argus passed to the shell
- * @frnt: double pointer to the start of argu.
+ * @front_: double pointer to the start of argu.
  *
  * Return: -1 (when error occures)
  *	   0 (when otherwise)
@@ -17,7 +16,7 @@ int shellby_unsetenv(char **argu, char __attribute__((__unused__)) **frnt);
  *              format 'variable'='value'.
  */
 
-int shellby_env(char **argu, char __attribute__((__unused__)) **frnt)
+int shellby_env(char **argu, char __attribute__((__unused__)) **front_)
 {
 	int indx;
 	char nnc = '\n';
@@ -38,7 +37,7 @@ int shellby_env(char **argu, char __attribute__((__unused__)) **frnt)
 /**
  * shellby_setenv - a function that changes or adds an env variable to the PATH
  * @argu: array of argus that is passed to the shell
- * @frnt: double pointer to da beginning of argu
+ * @front_: double pointer to da beginning of argu
  * Description: argu[1] da name of new or an existing PATH variable
  *              argu[2] da value to set new or a changed variable to
  *
@@ -46,7 +45,7 @@ int shellby_env(char **argu, char __attribute__((__unused__)) **frnt)
  *         0 (when otherwise)
  */
 
-int shellby_setenv(char **argu, char __attribute__((__unused__)) **frnt)
+int shellby_setenv(char **argu, char __attribute__((__unused__)) **front_)
 {
 	char **env_var = NULL, **new_envirm, *NewValue;
 	size_t size;
@@ -93,14 +92,14 @@ int shellby_setenv(char **argu, char __attribute__((__unused__)) **frnt)
 /**
  * shellby_unsetenv - a function that deletes an env variable from the PATH
  * @argu: array of args that is pased to shell
- * @frnt: dble pontr to the start of an argut
+ * @front_: dble pontr to the start of an argut
  * Description: argu[1] is the PATH variable to remove
  *
  * Return: -1 (when error occures)
  *         0 (when otherwise)
  */
 
-int shellby_unsetenv(char **argu, char __attribute__((__unused__)) **frnt)
+int shellby_unsetenv(char **argu, char __attribute__((__unused__)) **front_)
 {
 	char **env_var, **new_envirm;
 	size_t size;
