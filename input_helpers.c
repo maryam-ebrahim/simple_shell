@@ -1,19 +1,20 @@
 /*
  * File: input_helpers.c
  *
+ *
  */
 
 #include "shell.h"
 
 char *get_args(char *_line, int *exeRet_);
-int call_args(char **argument, char **front_, int *exeRet_);
-int run_args(char **argument, char **front_, int *exeRet_);
+int call_args(char **argu, char **front_, int *exeRet_);
+int run_args(char **argu, char **front_, int *exeRet_);
 int handle_args(int *exeRet_);
-int check_args(char **argument);
+int check_args(char **argu);
 
 /**
  * get_args - a function that gets a cmd from stndrd inpt.
- * @_line: buf_fer to store the cmd.
+ * @_line: bufer to store the cmd.
  * @exeRet_: return val of last executed cmd.
  *
  * Return: NULL (when an error occures)
@@ -50,95 +51,95 @@ char *get_args(char *_line, int *exeRet_)
 /**
  * call_args - a function that partitions
  * operators from cmdss we calls them.
- * @argument: An array of arguments.
+ * @argu: An array of arguments.
  * @front_: dble pontr to the start of an argumentt
  * @exeRet_: return value of parent process' last executed cmd.
  *
  * Return: return val of cmd.
  */
 
-int call_args(char **argument, char **front_, int *exeRet_)
+int call_args(char **argu, char **front_, int *exeRet_)
 {
 	int retur, ind_ex;
 
-	if (!argument[0])
+	if (!argu[0])
 		return (*exeRet_);
-	for (ind_ex = 0; argument[ind_ex]; ind_ex++)
+	for (ind_ex = 0; argu[ind_ex]; ind_ex++)
 	{
-		if (_strncmp(argument[ind_ex], "||", 2) == 0)
+		if (_strncmp(argu[ind_ex], "||", 2) == 0)
 		{
-			free(argument[ind_ex]);
-			argument[ind_ex] = NULL;
-			argument = replace_aliases(argument);
-			retur = run_args(argument, front_, exeRet_);
+			free(argu[ind_ex]);
+			argu[ind_ex] = NULL;
+			argu = replace_aliases(argu);
+			retur = run_args(argu, front_, exeRet_);
 			if (*exeRet_ != 0)
 			{
-				argument = &argument[++ind_ex];
+				argu = &argu[++ind_ex];
 				ind_ex = 0;
 			}
 			else
 			{
-				for (ind_ex++; argument[ind_ex]; ind_ex++)
-					free(argument[ind_ex]);
+				for (ind_ex++; argu[ind_ex]; ind_ex++)
+					free(argu[ind_ex]);
 				return (retur);
 			}
 		}
-		else if (_strncmp(argument[ind_ex], "&&", 2) == 0)
+		else if (_strncmp(argu[ind_ex], "&&", 2) == 0)
 		{
-			free(argument[ind_ex]);
-			argument[ind_ex] = NULL;
-			argument = replace_aliases(argument);
-			retur = run_args(argument, front_, exeRet_);
+			free(argu[ind_ex]);
+			argu[ind_ex] = NULL;
+			argu = replace_aliases(argu);
+			retur = run_args(argu, front_, exeRet_);
 			if (*exeRet_ == 0)
 			{
-				argument = &argument[++ind_ex];
+				argu = &argu[++ind_ex];
 				ind_ex = 0;
 			}
 			else
 			{
-				for (ind_ex++; argument[ind_ex]; ind_ex++)
-					free(argument[ind_ex]);
+				for (ind_ex++; argu[ind_ex]; ind_ex++)
+					free(argu[ind_ex]);
 				return (retur);
 			}
 		}
 	}
-	argument = replace_aliases(argument);
-	retur = run_args(argument, front_, exeRet_);
+	argu = replace_aliases(argu);
+	retur = run_args(argu, front_, exeRet_);
 	return (retur);
 }
 
 /**
  * run_args - a function that calls the execution of a cmd.
- * @argument: array of argsssssss.
+ * @argu: array of argsssssss.
  * @front_: dble pontr to the start of an argumentt
  * @exeRet_: return val of parent prcs' last executed cmd.
  *
  * Return: return val of cmd.
  */
 
-int run_args(char **argument, char **front_, int *exeRet_)
+int run_args(char **argu, char **front_, int *exeRet_)
 {
 	int retur, i;
-	int (*builtin)(char **argument, char **front_);
+	int (*builtin)(char **argu, char **front_);
 
-	builtin = get_builtin(argument[0]);
+	builtin = get_builtin(argu[0]);
 
 	if (builtin)
 	{
-		retur = builtin(argument + 1, front_);
+		retur = builtin(argu + 1, front_);
 		if (retur != EXIT)
 			*exeRet_ = retur;
 	}
 	else
 	{
-		*exeRet_ = execute(argument, front_);
+		*exeRet_ = execute(argu, front_);
 		retur = *exeRet_;
 	}
 
 	historyy++;
 
-	for (i = 0; argument[i]; i++)
-		free(argument[i]);
+	for (i = 0; argu[i]; i++)
+		free(argu[i]);
 
 	return (retur);
 }
@@ -156,37 +157,37 @@ int run_args(char **argument, char **front_, int *exeRet_)
 int handle_args(int *exeRet_)
 {
 	int retur = 0, ind_ex;
-	char **argument, *_line = NULL, **front_;
+	char **argu, *_line = NULL, **front_;
 
 	_line = get_args(_line, exeRet_);
 	if (!_line)
 		return (END_OF_FILE);
 
-	argument = _strtok(_line, " ");
+	argu = _strtok(_line, " ");
 	free(_line);
-	if (!argument)
+	if (!argu)
 		return (retur);
-	if (check_args(argument) != 0)
+	if (check_args(argu) != 0)
 	{
 		*exeRet_ = 2;
-		free_args(argument, argument);
+		free_args(argu, argu);
 		return (*exeRet_);
 	}
-	front_ = argument;
+	front_ = argu;
 
-	for (ind_ex = 0; argument[ind_ex]; ind_ex++)
+	for (ind_ex = 0; argu[ind_ex]; ind_ex++)
 	{
-		if (_strncmp(argument[ind_ex], ";", 1) == 0)
+		if (_strncmp(argu[ind_ex], ";", 1) == 0)
 		{
-			free(argument[ind_ex]);
-			argument[ind_ex] = NULL;
-			retur = call_args(argument, front_, exeRet_);
-			argument = &argument[++ind_ex];
+			free(argu[ind_ex]);
+			argu[ind_ex] = NULL;
+			retur = call_args(argu, front_, exeRet_);
+			argu = &argu[++ind_ex];
 			ind_ex = 0;
 		}
 	}
-	if (argument)
-		retur = call_args(argument, front_, exeRet_);
+	if (argu)
+		retur = call_args(argu, front_, exeRet_);
 
 	free(front_);
 	return (retur);
@@ -195,28 +196,29 @@ int handle_args(int *exeRet_)
 /**
  * check_args - a function that checks
  * any leading ';', ';;', '&&', or '||'.
- * @argument: 2D pointer to tokenized com_ands and argss.
+ * @argu: 2D pointer to tokenized com_ands and argss.
  *
  * Return: 2 (If a ';', '&&', or '||' is placed at an invalid position)
  *	   0 (when otherwise)
  */
 
-int check_args(char **argument)
+int check_args(char **argu)
 {
 	size_t i;
 	char *cur, *nex;
 
-	for (i = 0; argument[i]; i++)
+	for (i = 0; argu[i]; i++)
 	{
-		cur = argument[i];
+		cur = argu[i];
 		if (cur[0] == ';' || cur[0] == '&' || cur[0] == '|')
 		{
 			if (i == 0 || cur[1] == ';')
-				return (create_error(&argument[i], 2));
-			nex = argument[i + 1];
+				return (create_error(&argu[i], 2));
+			nex = argu[i + 1];
 			if (nex && (nex[0] == ';' || nex[0] == '&' || nex[0] == '|'))
-				return (create_error(&argument[i + 1], 2));
+				return (create_error(&argu[i + 1], 2));
 		}
 	}
 	return (0);
 }
+

@@ -1,31 +1,30 @@
 /*
  * File: alias_builtins.c
  * Auth: Asmaa BAHR and Maryam Ebrahim
-*/
-
+ */
 #include "shell.h"
 
-int shellby_alias(char **argument, char __attribute__((__unused__)) **front_);
+int shellby_alias(char **argu, char __attribute__((__unused__)) **front_);
 void set_alias(char *variab_name, char *value);
 void print_alias(alias_t *alias);
 
 /**
  * shellby_alias - Built_in cmd to print all alias22, specific
  * alias22, or sets an alias.
- * @argument: array of arguments.
- * @front_: double pointer to da beginning of argument.
+ * @argu: array of arguments.
+ * @front_: double pointer to da beginning of argu.
  *
  * Return: -1 (when error occures)
  *         0 (when otherwise)
  */
 
-int shellby_alias(char **argument, char __attribute__((__unused__)) **front_)
+int shellby_alias(char **argu, char __attribute__((__unused__)) **front_)
 {
 	alias_t *_temp = alias22;
 	int i, retur = 0;
 	char *value;
 
-	if (!argument[0])
+	if (!argu[0])
 	{
 		while (_temp)
 		{
@@ -34,15 +33,15 @@ int shellby_alias(char **argument, char __attribute__((__unused__)) **front_)
 		}
 		return (retur);
 	}
-	for (i = 0; argument[i]; i++)
+	for (i = 0; argu[i]; i++)
 	{
 		_temp = alias22;
-		value = _strchr(argument[i], '=');
+		value = _strchr(argu[i], '=');
 		if (!value)
 		{
 			while (_temp)
 			{
-				if (_strcmp(argument[i], _temp->name) == 0)
+				if (_strcmp(argu[i], _temp->name) == 0)
 				{
 					print_alias(_temp);
 					break;
@@ -50,10 +49,10 @@ int shellby_alias(char **argument, char __attribute__((__unused__)) **front_)
 				_temp = _temp->to_next;
 			}
 			if (!_temp)
-				retur = create_error(argument + i, 1);
+				retur = create_error(argu + i, 1);
 		}
 		else
-			set_alias(argument[i], value);
+			set_alias(argu[i], value);
 	}
 	return (retur);
 }
@@ -125,35 +124,35 @@ void print_alias(alias_t *alias)
  * replace_aliases - a function that goes through
  * the arguments to replace matching alias
  * with their value.
- * @argument: 2D pointer to da arguments.
+ * @argu: 2D pointer to da arguments.
  *
  * Return: 2D pointer to da arguments.
  */
 
-char **replace_aliases(char **argument)
+char **replace_aliases(char **argu)
 {
 	alias_t *_temp;
 	int i;
 	char *NewValue;
 
-	if (_strcmp(argument[0], "alias") == 0)
-		return (argument);
-	for (i = 0; argument[i]; i++)
+	if (_strcmp(argu[0], "alias") == 0)
+		return (argu);
+	for (i = 0; argu[i]; i++)
 	{
 		_temp = alias22;
 		while (_temp)
 		{
-			if (_strcmp(argument[i], _temp->name) == 0)
+			if (_strcmp(argu[i], _temp->name) == 0)
 			{
 				NewValue = malloc(sizeof(char) * (_strlen(_temp->value) + 1));
 				if (!NewValue)
 				{
-					free_args(argument, argument);
+					free_args(argu, argu);
 					return (NULL);
 				}
 				_strcpy(NewValue, _temp->value);
-				free(argument[i]);
-				argument[i] = NewValue;
+				free(argu[i]);
+				argu[i] = NewValue;
 				i--;
 				break;
 			}
@@ -161,5 +160,6 @@ char **replace_aliases(char **argument)
 		}
 	}
 
-	return (argument);
+	return (argu);
 }
+

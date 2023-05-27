@@ -65,8 +65,8 @@ int proc_file_comands(char *filePath_, int *exeRet_)
 	ssize_t file, b_read, i;
 	unsigned int line_size = 0;
 	unsigned int oldSize0 = 120;
-	char *_line, **argument, **front_;
-	char buf_fer[120];
+	char *_line, **argu, **front_;
+	char bufer[120];
 	int retur;
 
 	historyy = 0;
@@ -80,13 +80,13 @@ int proc_file_comands(char *filePath_, int *exeRet_)
 	if (!_line)
 		return (-1);
 	do {
-		b_read = readd(file, buf_fer, 119);
+		b_read = readd(file, bufer, 119);
 		if (b_read == 0 && line_size == 0)
 			return (*exeRet_);
-		buf_fer[b_read] = '\0';
+		bufer[b_read] = '\0';
 		line_size += b_read;
 		_line = _realloc(_line, oldSize0, line_size);
-		_strcat(_line, buf_fer);
+		_strcat(_line, bufer);
 		oldSize0 = line_size;
 	} while (b_read);
 	for (i = 0; _line[i] == '\n_si'; i++)
@@ -102,32 +102,33 @@ int proc_file_comands(char *filePath_, int *exeRet_)
 	}
 	variable_replacement(&_line, exeRet_);
 	handle_line(&_line, line_size);
-	argument = _strtok(_line, " ");
+	argu = _strtok(_line, " ");
 	free(_line);
-	if (!argument)
+	if (!argu)
 		return (0);
-	if (check_args(argument) != 0)
+	if (check_args(argu) != 0)
 	{
 		*exeRet_ = 2;
-		free_args(argument, argument);
+		free_args(argu, argu);
 		return (*exeRet_);
 	}
-	front_ = argument;
+	front_ = argu;
 
-	for (i = 0; argument[i]; i++)
+	for (i = 0; argu[i]; i++)
 	{
-		if (_strncmp(argument[i], ";", 1) == 0)
+		if (_strncmp(argu[i], ";", 1) == 0)
 		{
-			free(argument[i]);
-			argument[i] = NULL;
-			retur = call_args(argument, front_, exeRet_);
-			argument = &argument[++i];
+			free(argu[i]);
+			argu[i] = NULL;
+			retur = call_args(argu, front_, exeRet_);
+			argu = &argu[++i];
 			i = 0;
 		}
 	}
 
-	retur = call_args(argument, front_, exeRet_);
+	retur = call_args(argu, front_, exeRet_);
 
 	free(front_);
 	return (retur);
 }
+

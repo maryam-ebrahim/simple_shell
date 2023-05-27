@@ -32,7 +32,7 @@ int _strlen(const char *st)
 /**
  * _strcpy - a function that copies the string pointed
  * to by source, including the terminating null
- * by_te, to the buf_fer pointed by des.
+ * by_te, to the bufer pointed by des.
  * @dest: pntr to the desti_nation of cop_ied strr.
  * @source: pntr to the sou_rce of the sour_ce str.
  *

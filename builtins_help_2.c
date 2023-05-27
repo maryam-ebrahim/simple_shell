@@ -6,9 +6,8 @@ void help_unsetenv(void);
 void help_history(void);
 
 /**
- * help_env - a function that displays info on the shellby built_in cmd env
+ * help_env - function display information on shellby builtin comand 'env'
  */
-
 void help_env(void)
 {
 	char *mesg = "env: env\n_si\tPrints the current environment.\n_si";
@@ -17,7 +16,7 @@ void help_env(void)
 }
 
 /**
- * help_setenv - a function displays info on the shellby built_in cmd setenv
+ * help_setenv - display information on shellby built_in comand 'setenv'
  */
 
 void help_setenv(void)
@@ -32,7 +31,7 @@ void help_setenv(void)
 }
 
 /**
- * help_unsetenv - a function that displays info on the shellby built_in cmd
+ * help_unsetenv - function displays information on shellby built_in comand
  * 'unsetenv'.
  */
 void help_unsetenv(void)
@@ -45,3 +44,4 @@ void help_unsetenv(void)
 	mesg = "message to stderr.\n_si";
 	write(STDOUT_FILENO, mesg, _strlen(mesg));
 }
+

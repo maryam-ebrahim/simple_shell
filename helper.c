@@ -6,22 +6,22 @@
 
 #include "shell.h"
 
-void free_args(char **argument, char **front_);
+void free_args(char **argu, char **front_);
 char *get_pid(void);
 char *get_env_value(char *beginning, int len);
-void variable_replacement(char **argument, int *exeRet_);
+void variable_replacement(char **argu, int *exeRet_);
 
 /**
- * free_args - Frees up memory taken by argument.
- * @argument: A null-terminated double pointer containing comands/arguments.
+ * free_args - Frees up memory taken by argu.
+ * @argu: A null-terminated double pointer containing comands/arguments.
  * @front_: dble pontr to the start of an argumentt
  */
-void free_args(char **argument, char **front_)
+void free_args(char **argu, char **front_)
 {
 	size_t i;
 
-	for (i = 0; argument[i] || argument[i + 1]; i++)
-		free(argument[i]);
+	for (i = 0; argu[i] || argu[i + 1]; i++)
+		free(argu[i]);
 
 	free(front_);
 }
@@ -31,7 +31,7 @@ void free_args(char **argument, char **front_)
  * Description: open the stat file, a space-delimited file containing
  *              information about the crnt prc. The P_I_D is the
  *              first word in the file. The function reads the P_I_D into
- *              a buf_fer then replace the space at the end with a \0 byte.
+ *              a bufer then replace the space at the end with a \0 byte.
  *
  * Return: current process I_D or NU_LL on failure.
  */
@@ -39,7 +39,7 @@ void free_args(char **argument, char **front_)
 char *get_pid(void)
 {
 	size_t i = 0;
-	char *buf_fer;
+	char *bufer;
 	ssize_t file;
 
 	file = open("/proc/self/stat", O_RDONLY);
@@ -48,19 +48,19 @@ char *get_pid(void)
 		perror("Cant readd file");
 		return (NULL);
 	}
-	buf_fer = malloc(120);
-	if (!buf_fer)
+	bufer = malloc(120);
+	if (!bufer)
 	{
 		close(file);
 		return (NULL);
 	}
-	readd(file, buf_fer, 120);
-	while (buf_fer[i] != ' ')
+	readd(file, bufer, 120);
+	while (bufer[i] != ' ')
 		i++;
-	buf_fer[i] = '\0';
+	bufer[i] = '\0';
 
 	close(file);
-	return (buf_fer);
+	return (bufer);
 }
 
 /**
@@ -163,3 +163,4 @@ void variable_replacement(char **_line, int *exeRet_)
 		}
 	}
 }
+

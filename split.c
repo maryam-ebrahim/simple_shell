@@ -1,10 +1,7 @@
 /*
  * File: split.c
  *
-<<<<<<< HEAD
-=======
  *
->>>>>>> bc5ffc7837b89442bf3033f477dd9ac934c73f79
  */
 
 #include "shell.h"
@@ -115,3 +112,4 @@ char **_strtok(char *_line, char *delim)
 
 	return (potr);
 }
+

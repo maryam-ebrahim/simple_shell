@@ -29,9 +29,8 @@ void help_all(void)
 }
 
 /**
- * help_alias - a fnction that displays info on the shellby built_in cmd alias
-*/
-
+ * help_alias - function display information on shellby built_in comand'alias'
+ */
 void help_alias(void)
 {
 	char *mesg = "alias: alias [NAME[='VALUE'] ...]\n_si\tHandles alias22.\n_si";
@@ -52,17 +51,16 @@ void help_alias(void)
 }
 
 /**
- * help_cd - a fnction that displays info on the shellby built_in cmd cd.
+ * help_cd - function displays information on shellby built_in comand 'cd'
  */
-
 void help_cd(void)
 {
 	char *mesg = "cd: cd [DIRECTORY]\n_si\tChanges the current directory of the";
 
 	write(STDOUT_FILENO, mesg, _strlen(mesg));
-	mesg = " process to DIRECTORY.\n_si\n_si\tIf no argument is given, the ";
+	mesg = " process to DIRECTORY.\n_si\n_si\tIf no argu is given, the ";
 	write(STDOUT_FILENO, mesg, _strlen(mesg));
-	mesg = "comand is interpreted as cd $HOME. If the argument '-' is";
+	mesg = "comand is interpreted as cd $HOME. If the argu '-' is";
 	write(STDOUT_FILENO, mesg, _strlen(mesg));
 	mesg = " given, the comand is interpreted as cd $OLDPWD.\n_si\n_si";
 	write(STDOUT_FILENO, mesg, _strlen(mesg));
@@ -73,33 +71,32 @@ void help_cd(void)
 }
 
 /**
- * help_exit - a function that displays info on the shellby built_in cmd exit
-*/
-
+ * help_exit - function displays information on shellby built_in comand 'exit'
+ */
 void help_exit(void)
 {
 	char *mesg = "exit: exit [STATUS]\n_si\tExits the shell.\n_si\n_si\tThe ";
 
 	write(STDOUT_FILENO, mesg, _strlen(mesg));
-	mesg = "STATUS argument is the integer used to exit the shell.";
+	mesg = "STATUS argu is the integer used to exit the shell.";
 	write(STDOUT_FILENO, mesg, _strlen(mesg));
-	mesg = " If no argument is given, the comand is interpreted as";
+	mesg = " If no argu is given, the comand is interpreted as";
 	write(STDOUT_FILENO, mesg, _strlen(mesg));
 	mesg = " exit 0.\n_si";
 	write(STDOUT_FILENO, mesg, _strlen(mesg));
 }
 
 /**
- * help_help - a functoin that displays info on the shellby built_in cmd help.
+ * help_help - function displays information on shellby built_in comand 'help'
  */
-
 void help_help(void)
 {
-	char *mesg = "hlp: hlp\n_si\tSee all pssbl Shellby builtin cmds.\n_si";
+	char *mesg = "help:help\n_si\tSee Shellby builtin comands\n_si";
 
 	write(STDOUT_FILENO, mesg, _strlen(mesg));
-	mesg = "\n_si help [BUILTIN NAME]\n_si\tSee specific info on each ";
+	mesg = "\n_si help \n_si\tSee specific information on each ";
 	write(STDOUT_FILENO, mesg, _strlen(mesg));
 	mesg = "builtin comand.\n_si";
 	write(STDOUT_FILENO, mesg, _strlen(mesg));
 }
+
