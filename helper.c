@@ -54,7 +54,7 @@ char *get_pid(void)
 		close(file);
 		return (NULL);
 	}
-	readd(file, bufer, 120);
+	read(file, bufer, 120);
 	while (bufer[i] != ' ')
 		i++;
 	bufer[i] = '\0';

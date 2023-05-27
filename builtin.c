@@ -77,6 +77,7 @@ int shellby_exit(char **argu, char **front_)
 	}
 	if (mNu > max - 1)
 		return (create_error(--argu, 2));
+
 	argu -= 1;
 	free_args(argu, front_);
 	free_env();
@@ -96,7 +97,7 @@ int shellby_exit(char **argu, char **front_)
 
 int shellby_cd(char **argu, char __attribute__((__unused__)) **front_)
 {
-	char **direcInfo_, *newLine_ = "\n_si";
+	char **direcInfo_, *newLine_ = "\n";
 	char *old_pwd = NULL, *pwd = NULL;
 	struct stat direc;
 
@@ -122,8 +123,8 @@ int shellby_cd(char **argu, char __attribute__((__unused__)) **front_)
 		}
 		else
 		{
-			if (stat(argu[0], &direc) == 0 && S_ISDIR(direc.stMode)
-					&& ((direc.stMode & S_IXUSR) != 0))
+			if (stat(argu[0], &direc) == 0 && S_ISDIR(direc.st_mode)
+					&& ((direc.st_mode & S_IXUSR) != 0))
 				chdir(argu[0]);
 			else
 			{

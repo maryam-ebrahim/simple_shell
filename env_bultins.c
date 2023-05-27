@@ -19,7 +19,7 @@ int shellby_unsetenv(char **argu, char __attribute__((__unused__)) **frnt);
 int shellby_env(char **argu, char __attribute__((__unused__)) **frnt)
 {
 	int ind_ex;
-	char n_c = '\n_si';
+	char n_c = '\n';
 
 	if (!envirm)
 		return (-1);

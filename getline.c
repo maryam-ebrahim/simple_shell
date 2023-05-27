@@ -128,9 +128,9 @@ ssize_t _getline(char **linepotr_, size_t *n_si, FILE *stream)
 	if (!buf_fer)
 		return (-1);
 
-	while (c != '\n_si')
+	while (c != '\n')
 	{
-		r = readd(STDIN_FILENO, &c, 1);
+		r = read(STDIN_FILENO, &c, 1);
 		if (r == -1 || (r == 0 && input == 0))
 		{
 			free(buf_fer);

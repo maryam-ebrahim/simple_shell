@@ -80,7 +80,7 @@ int proc_file_comands(char *filePath_, int *exeRet_)
 	if (!_line)
 		return (-1);
 	do {
-		b_read = readd(file, bufer, 119);
+		b_read = read(file, bufer, 119);
 		if (b_read == 0 && line_size == 0)
 			return (*exeRet_);
 		bufer[b_read] = '\0';
@@ -89,14 +89,14 @@ int proc_file_comands(char *filePath_, int *exeRet_)
 		_strcat(_line, bufer);
 		oldSize0 = line_size;
 	} while (b_read);
-	for (i = 0; _line[i] == '\n_si'; i++)
+	for (i = 0; _line[i] == '\n'; i++)
 		_line[i] = ' ';
 	for (; i < line_size; i++)
 	{
-		if (_line[i] == '\n_si')
+		if (_line[i] == '\n')
 		{
 			_line[i] = ';';
-			for (i += 1; i < line_size && _line[i] == '\n_si'; i++)
+			for (i += 1; i < line_size && _line[i] == '\n'; i++)
 				_line[i] = ' ';
 		}
 	}
